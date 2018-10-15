@@ -81,3 +81,35 @@ flut <- data.frame(제품 = c('사과', '딸기', '수박'),
 flut
 mean(flut$가격)
 mean(flut$판매량)
+
+# 외부테이터 이용하기
+
+install.packages("readxl")
+library(readxl)
+
+# 엑셀 불러오기
+df_exam <- read_excel("excel_exam.xlsx")
+df_exam
+
+# 분석하기
+mean(df_exam$math)
+mean(df_exam$english)
+mean(df_exam$science)
+
+# 첫번째 row에 변수명이 아닐 경우
+# 아래와 같이 첫번째 row가 변수 명으로 변한다.
+read_excel("excel_exam_novar.xlsx")
+
+# 따라서 아래와 같이 옵션을 사용하여 변수명을 생성한다.
+df_exam_novar <- read_excel('excel_exam_novar.xlsx', col_names = F)
+df_exam_novar
+
+# 엑셀 시트가 여러개 있을경우 sheet옵션을 통해 지정된 시트를 불러올수 있다.
+df_exam_sheet <- read_excel("excel_exam_sheet.xlsx", sheet = 3)
+df_exam_sheet
+
+# csv load
+read.csv('csv_exam.csv', header = F)
+
+# 문자가 들어있는 파일을 불러올때
+read.csv('csv_exam.csv', stringsAsFactors = F)
