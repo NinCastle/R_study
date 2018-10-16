@@ -113,3 +113,40 @@ read.csv('csv_exam.csv', header = F)
 
 # 문자가 들어있는 파일을 불러올때
 read.csv('csv_exam.csv', stringsAsFactors = F)
+
+# 데이터프레임을 csv로 저장하기
+df_midterm <- data.frame(eng = c(90, 80, 40, 23),
+                         math = c(30, 40, 60, 20),
+                         kor = c(50, 50, 40, 50),
+                         class = c(1, 1, 2, 2))
+df_midterm
+
+# csv파일로 저장하기
+write.csv(df_midterm, file = "df_midterm.csv")
+
+# RData 저장하고 불러오기
+save(df_midterm, file = "df_midterm.rda")
+
+# 데이터 삭제
+rm(df_midterm)
+
+# 메모리상에서 데이터를 삭제 했기 때문에 변수로 찾을 수 없다.
+df_midterm
+
+load("df_midterm.rda")
+
+df_midterm
+
+#RDA 파일은 저장할때 변수도 같이 저장됨으로 따로 load할때 변수에 담을 필요가 없다.
+
+# excel
+df_exam <- read_excel("excel_exam.xlsx")
+df_exam
+
+# csv
+df_csv_exam <- read.csv("csv_exam.csv")
+df_csv_exam
+
+# Rda 로드
+load("df_midterm.rda")
+df_midterm
