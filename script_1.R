@@ -150,3 +150,42 @@ df_csv_exam
 # Rda 로드
 load("df_midterm.rda")
 df_midterm
+
+
+######
+# 데이터 파악하기, 수정하기
+######
+
+# 데이터 파악함수
+##################
+# head()   # 데이터 앞부분 출력
+# tail()   # 데이터 뒤부분 출력
+# View()   # 뷰어 창에서 데이터 확인
+# dim()    # 데이터 차원 출력
+# str()    # 데이터 속성 출력
+# summary()# 요약 통계량 출력
+
+library(readxl)
+exam <- read.csv("csv_exam.csv")
+
+head(exam) # 앞에서 부터 6행 출력
+head(exam, 10) # 앞에서 부터 10행 출력
+tail(exam) # 뒤에서 부터 6행 출력
+View(exam) # 뷰어창에서 확인
+dim(exam) # 차원확인 (row, column)
+str(exam) # 속성확인
+summary(exam) # 요약 통계량 출력
+
+
+## mpg데이터 파악하기
+library(ggplot2)
+# ggplot2의 mpg 데이터를 데이터 프레임으로 불러오기
+mpg <- as.data.frame(ggplot2::mpg)
+head(mpg)
+tail(mpg)
+View(mpg)
+dim(mpg)
+str(mpg)
+summary(mpg)
+
+## 변수명 바꾸기
