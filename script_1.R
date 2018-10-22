@@ -189,3 +189,42 @@ str(mpg)
 summary(mpg)
 
 ## 변수명 바꾸기
+df_raw <- data.frame(var1=c(1, 2, 3),
+                     var2=c(2, 3, 2))
+df_raw
+
+# dplyr 패키지 설치
+install.packages("dplyr")
+library(dplyr)
+
+# 데이터 프레임 복사본 설치
+df_new <- df_raw
+df_new
+
+# 변수명 바꾸기
+df_name <- rename(df_new, v2 = var2)
+df_name
+
+library(ggplot2)
+mg <- as.data.frame(ggplot2::mpg)
+mg
+new_mg <- rename(mg, city = cty, highway = hwy)
+new_mg
+
+
+######
+# 파생변수 만들기
+######
+
+df <- data.frame(var1 = c(4, 3, 8),
+                 var2 = c(2, 6, 1))
+df
+
+df$var_sum <- df$var1 + df$var2
+df
+
+df$var_mean <- (df$var1 + df$var2)/2
+df
+
+mpg$total <- (mpg$cty + mpg$hwy)/2
+head(mpg)
