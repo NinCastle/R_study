@@ -228,3 +228,30 @@ df
 
 mpg$total <- (mpg$cty + mpg$hwy)/2
 head(mpg)
+
+# 연비 평균
+mean(mpg$total)
+
+
+#####
+# 조건문을 이용한 파생변수
+#####
+
+summary(mpg$total) # 요약 통계량 산출
+
+hist(mpg$total)
+
+## 합격 판정 변수 만들기
+mpg$test <- ifelse(mpg$total >= 20, 'pass', 'fail')
+mpg
+
+
+## 빈도표로 합격판정 자동차 수 살펴보기
+table(mpg$test)
+
+## 막대그래프로 빈도 표현하기
+library(ggplot2)
+qplot(mpg$test)
+
+mpg$grade <- ifelse(mpg$total >= 30, 'A',ifelse(mpg$total >= 20, 'B', 'C'))
+head(mpg, 20)
