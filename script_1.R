@@ -213,7 +213,7 @@ new_mg
 
 
 ######
-# 파생변수 만들기
+# 파생변수 만들기(Derived Variable)
 ######
 
 df <- data.frame(var1 = c(4, 3, 8),
