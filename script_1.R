@@ -255,3 +255,42 @@ qplot(mpg$test)
 
 mpg$grade <- ifelse(mpg$total >= 30, 'A',ifelse(mpg$total >= 20, 'B', 'C'))
 head(mpg, 20)
+
+table(mpg$grade)
+
+qplot(mpg$grade)
+
+## A, B, c, D 등급 부여
+mpg$grade2 <- ifelse(mpg$total >= 30, 'A', 
+                     ifelse(mpg$total >= 25, 'B',
+                            ifelse(mpg$total >= 20, 'C', 'D')))
+
+table(mpg$grade2)
+qplot(mpg$grade2)
+
+## 혼자해보기
+
+## Q1
+midw = as.data.frame(ggplot2::midwest)
+head(midw)
+tail(midw)
+View(midw)
+summary(midw)
+str(midw)
+dim(midw)
+
+## Q2
+midw <- rename(midw, total = poptotal)
+midw$total
+
+## Q2
+midw <- rename(midw, asian = popasian)
+midw$asian
+
+## Q3
+midw$asianRate <- midw$asian/midw$total * 100
+midw$asianRate
+
+qplot(midw$asianRate)
+mean(midw$asianRate)
+# ifelse(midw$asianRate >= )
