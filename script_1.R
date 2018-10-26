@@ -291,6 +291,71 @@ midw$asian
 midw$asianRate <- midw$asian/midw$total * 100
 midw$asianRate
 
+## Q4
 qplot(midw$asianRate)
 mean(midw$asianRate)
-# ifelse(midw$asianRate >= )
+midw$ARLS <- ifelse(midw$asianRate >= 0.48, "lagre", "small")
+midw
+
+## Q5
+table(midw$ARLS)
+qplot(midw$ARLS)
+
+
+######
+# 자유자재로 데이터 가공하기
+######
+
+# 전처리하기 1
+
+# dplyr의 데이터 전처리 함수
+##################
+# filter()    # 행추출
+# select()    # 열(변수) 추출
+# arrange()   # 정렬
+# mutate()    # 변수 추가
+# summarise() # 통계치 산출
+# goup_by()   # 집단별로 나누기
+# left_join() # 데이터합치기 (열)
+# bend_rows() # 데이터합치기 (행)
+
+# 조건에 맞는 데이터 추출
+library(dplyr)
+exam <- read.csv('csv_exam.csv')
+exam
+
+# filter의 %>% 사용하여 필터링하기
+exam %>% filter(class == 1)
+
+exam %>% filter(class == 2)
+
+exam %>% filter(class != 3)
+
+exam %>% filter(class != 4)
+
+exam %>% filter(math > 50)
+
+exam %>% filter(math < 50)
+
+exam %>% filter(english > 80)
+
+exam %>% filter(english <= 80)
+
+## 여러조건(and)
+exam %>% filter(math > 50 & english > 80)
+
+exam %>% filter(class == 2 & math > 60)
+
+## 여러조건(or)
+exam %>% filter(math > 80 | english > 90)
+
+exam %>% filter(class == 1 | class == 3 | class ==5)
+
+# 위와 같은 코드
+exam %>% filter(class %in% c(1, 3, 5))
+
+class1 <- exam %>% filter(class == 1)
+class2 <- exam %>% filter(class == 2)
+
+mean(class1$math)
+mean(class2$english)
