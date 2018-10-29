@@ -359,3 +359,27 @@ class2 <- exam %>% filter(class == 2)
 
 mean(class1$math)
 mean(class2$english)
+
+##Q1 p133
+mpg_file <- as.data.frame(ggplot2::mpg)
+displ4 <-mpg_file %>% filter(displ <= 4)
+displ4
+displ5 <- mpg_file %>%  filter(displ >= 5)
+displ5
+mean(displ4$hwy)
+mean(displ5$hwy)
+
+##Q2 
+audi <- mpg_file %>%filter(manufacturer == 'audi')
+audi
+mean(audi$cty)
+toyota <- mpg_file %>%  filter(manufacturer == 'toyota')
+mean(toyota$cty)
+
+##Q3
+chevrolet <- mpg_file %>%  filter(manufacturer == 'chevrolet')
+ford <- mpg_file %>% filter(manufacturer == 'ford')
+honda <- mpg_file %>%  filter(manufacturer == 'honda')
+mean(chevrolet$hwy)
+mean(ford$hwy) 
+mean(honda$hwy)
