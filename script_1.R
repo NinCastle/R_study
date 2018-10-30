@@ -383,3 +383,44 @@ honda <- mpg_file %>%  filter(manufacturer == 'honda')
 mean(chevrolet$hwy)
 mean(ford$hwy) 
 mean(honda$hwy)
+
+
+# 필요한 변수만 추출하기
+exam
+exam %>% select(math)
+
+exam %>% select(english)
+
+# 여러변수 동시 추출
+exam %>% select(class, math, english)
+
+# 변수 제외
+exam %>% select(-math)
+
+# 여러변수 제외
+exam %>% select(-math, -english)
+
+## filter()와 select() 조합
+exam %>% filter(class == 1) %>% select(english)
+
+## 가독성을 위한 줄나누기
+exam %>% 
+  filter(class == 2) %>% 
+  select(math)
+
+## 일부만 출력
+exam %>%
+  select(science) %>% 
+  head # 6 row 까지만 출력
+
+exam %>%
+  select(math) %>% 
+  head(10)
+
+#self doing
+##
+classcty <- mpg_file %>% select(class, cty)
+suv <- classcty %>% filter(class =="suv")
+compact <- classcty %>% filter(class == "compact")
+mean(suv$cty)
+mean(compact$cty)
