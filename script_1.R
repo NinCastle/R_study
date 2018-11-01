@@ -424,3 +424,19 @@ suv <- classcty %>% filter(class =="suv")
 compact <- classcty %>% filter(class == "compact")
 mean(suv$cty)
 mean(compact$cty)
+
+
+## 순서대로 정렬하기
+library(dplyr)
+exam <- read_excel('csv_exam.csv')
+exam
+
+# 오름차순 정렬하기
+exam %>% arrange(math) # math 오름차순
+
+# 내림차순 정렬하기
+exam %>% arrange(desc(math))
+
+exam %>% arrange(class, math) # class 정렬후 math 정렬
+
+## 파생변수 추가하기 p 113 파생변수 만들기 참조
