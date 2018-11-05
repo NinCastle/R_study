@@ -440,3 +440,39 @@ exam %>% arrange(desc(math))
 exam %>% arrange(class, math) # class 정렬후 math 정렬
 
 ## 파생변수 추가하기 p 113 파생변수 만들기 참조
+
+# 파생변수 추가하기
+exam %>% 
+  mutate( total = math + english + science) %>% 
+  head
+
+# 여러파생변수 한번에 추가하기
+exam %>% 
+  mutate(total = math + english + science,
+         mean = (math + english + science)/3) %>% 
+  head
+
+# mutate()함수에 ifelse() 적용하기
+exam %>%
+  mutate(test = ifelse(science >= 60, 'pass', 'fail')) %>% 
+  head
+
+# 추가한 변수를 dplyr 코드에 바로 활용하여 정렬하기
+exam %>% mutate(total = math + english + science) %>% arrange(total) %>% head
+
+# self do
+library(ggplot2)
+mpg_file <- as.data.frame(ggplot2::mpg)
+
+# Q1
+mutate_mpg <- mpg_file %>% mutate(total_wy=hwy+cty) %>% head
+
+# Q2
+mutate_mpg %>% mutate(mean_wy = total_wy/2) %>% head
+
+# Q3~Q4
+mpg_file %>%
+  mutate(total_wy = hwy+cty) %>% 
+  mutate(mean_wy = total_wy/2) %>%
+  arrange(desc(mean_wy)) %>%
+  head(3)
