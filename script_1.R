@@ -476,3 +476,35 @@ mpg_file %>%
   mutate(mean_wy = total_wy/2) %>%
   arrange(desc(mean_wy)) %>%
   head(3)
+
+
+## 집단별로 요약하기
+#1. 집단별 요약
+exam %>%  summarise(mean_math = mean(math)) #mean 평균 산출
+
+#2.
+exam %>% group_by(class) %>% # class별 분리
+  summarise(mean_math = mean(math)) # math 평균 산출
+
+#3. 여러 통계량 한번에 산출
+exam %>% group_by(class) %>% 
+  summarise(mean_math = mean(math),
+            sum_math = sum(math), 
+            median_math = median(math),
+            n = n())# 학생수(빈도수)
+
+
+##################
+# mean()  # 평균
+# sd()    # 표준편차
+# sum()   # 합계
+# median()# 중앙값
+# min()   # 최솟값
+# max()   # 최댓값
+# n()     # 빈도
+
+# 4. 각집단별로 다시 나누기
+mpg %>% 
+  group_by(manufacturer, drv) %>% # 회사별, 구동방식별
+  summarise(mean_cty = mean(cty)) %>% # cty 평균 산출
+  head(10) # 일부 출ㄹ
