@@ -507,4 +507,15 @@ exam %>% group_by(class) %>%
 mpg %>% 
   group_by(manufacturer, drv) %>% # 회사별, 구동방식별
   summarise(mean_cty = mean(cty)) %>% # cty 평균 산출
-  head(10) # 일부 출ㄹ
+  head(10) # 일부 출력
+
+library(dplyr)
+
+# dplyr 조합하기
+## 회사별로 "suv" 자동차의 도시 및 고속도록 통합 연비 평균을 구해 내림차순으로 정렬하고, 1~5위 까지 출력하기
+mpg %>% group_by(manufacturer) %>% 
+  filter(class=="suv") %>%
+  mutate(tot = (cty+hwy)/2) %>% 
+  summarise(mean_tot = mean(tot)) %>% 
+  arrange(desc(mean_tot)) %>% 
+  head(5)
