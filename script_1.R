@@ -513,9 +513,11 @@ library(dplyr)
 
 # dplyr 조합하기
 ## 회사별로 "suv" 자동차의 도시 및 고속도록 통합 연비 평균을 구해 내림차순으로 정렬하고, 1~5위 까지 출력하기
-mpg %>% group_by(manufacturer) %>% 
-  filter(class=="suv") %>%
-  mutate(tot = (cty+hwy)/2) %>% 
-  summarise(mean_tot = mean(tot)) %>% 
-  arrange(desc(mean_tot)) %>% 
-  head(5)
+mpg %>% group_by(manufacturer) %>% # 회사별로 분리
+  filter(class=="suv") %>% # suv 추출
+  mutate(tot = (cty+hwy)/2) %>% # 통합 연비 변수 생성
+  summarise(mean_tot = mean(tot)) %>% # 통합 연비 평균 산출
+  arrange(desc(mean_tot)) %>% # 내림차순 정렬 
+  head(5) # 1~5위 까지 출력
+
+
